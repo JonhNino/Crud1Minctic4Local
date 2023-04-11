@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Mi primer Crud</title>
+</head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+
+<div class="container">
+  <h2>Formulario Crud Mintic</h2>
+  
+  <form th:action="@{/form}" th:object="${agenda}" method="post" enctype="multipart/form-data">
+    
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" th:field="*{nombre}"  id="nombre" placeholder="Digite su Nombre" name="nombre" th:errorclass="'form-control alert-danger'" /> <small
+class="form-text text-danger"
+th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+    </div>
+    
+    <div class="form-group">
+      <label for="mail">Correo:</label>
+      <input type="text" class="form-control" th:field="*{mail}"  id="mail" placeholder="Digite su Correo" name="mail" th:errorclass="'form-control alert-danger'" /> <small
+class="form-text text-danger"
+th:if="${#fields.hasErrors('mail')}" th:errors="*{mail}"></small>
+    </div>
+    
+    <div class="form-group">
+      <label for="fecha">fecha:</label>
+      <input type="text" class="form-control" th:field="*{fecha}"  id="fecha" placeholder="Digite la fecha" name="fecha" th:errorclass="'form-control alert-danger'" /> <small
+class="form-text text-danger"
+th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></small>
+    </div>
+    
+    <div class="form-group row">
+						<label for="file" class="col-sm-2 col-form-label">Foto</label>
+						<div class="col-sm-6">
+							<input type="file" name="file" class="form-control" />
+						</div>
+					</div>
+    
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-warning"  onclick="window.location.href='/listar'">Listar Datos</button>
+  </form>
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

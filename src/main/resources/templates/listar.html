@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Mi Lista del Crud</title>
+</head>
+<body>
+<header th:replace="layout/layout :: header"></header>
+<div class="container">
+<table class="table table-striped">
+			<thead class="bg-dark">
+				<tr>
+					<th>id</th>
+					<th>nombre</th>
+					<th>email</th>
+					<th>fecha</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+					<th>Ver</th>
+					</tr>
+			</thead>
+			<tbody>
+				<tr th:each="agenda: ${agenda}">
+					<td th:text="${agenda.id}"></td>
+					<td th:text="${agenda.nombre}"></td>
+					<td th:text="${agenda.mail}"></td>
+					<td th:text="${agenda.fecha}"></td>
+					<td><a class="btn btn-primary btn-xs" th:href="@{/form/} + ${agenda.id}" th:text="'editar'"></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/eliminar/} + ${agenda.id}" th:text="'eliminar'" onclick="return confirm('Estás seguro que quieres eliminar?');"></a></td>		
+					<td><a class="btn btn-info btn-xs" th:href="@{/ver/} + ${agenda.id}" th:text="'ver'"></a></td>
+				</tr>
+			</tbody>
+
+		</table>
+<button type="button" class="btn btn-warning"  onclick="window.location.href='/form'">Inicio</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
